@@ -1,6 +1,5 @@
 INSERT INTO membro (num_membro, nome, idade) VALUES
 (854, 'Smith', 51),
-(125, 'Carlos Andrade', 32),
 (258, 'Maria Lima', 26),
 (247, 'João Silva', 40),
 (698, 'Romeu Lopes', 21),
