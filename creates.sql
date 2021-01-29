@@ -12,9 +12,9 @@ CREATE TABLE livro(
 );
 
 CREATE TABLE emprestado(
-    num_membro INT PRIMARY KEY,
-    isbn BIGINT PRIMARY KEY,
+    num_membro INT NOT NULL,
+    isbn BIGINT NOT NULL,
     data DATE NOT NULL,
-    FOREIGN KEY num_membro REFERENCES membro(num_membro),
-    FOREIGN KEY isbn REFERENCES livro(isbn)
+    FOREIGN KEY (num_membro) REFERENCES membro(num_membro),
+    FOREIGN KEY (isbn) REFERENCES livro(isbn)
 );
