@@ -1,12 +1,12 @@
 --Consulta a) Ache os autores que que tiveram livros pegos para empréstimo mais de 5 vezes e os agrupe por editora.
 
-SELECT l.editora, l.autores
+SELECT l.autores, l.editora
 FROM emprestado e INNER JOIN livro l ON e.isbn = l.isbn
 WHERE l.autores in (SELECT l.autores
        		        FROM emprestado e INNER JOIN livro l ON e.isbn = l.isbn
                   	GROUP by l.autores
 			HAVING COUNT(l.autores) >= 5)
-GROUP BY l.editora, l.autores;
+GROUP BY l.autores, l.editora;
 
 --Consulta b) Ache a média de empréstimos por data.
 
@@ -26,8 +26,8 @@ WHERE m.idade > 50 and (SELECT COUNT(*)
 
 --Consulta d) Ache os membros que fizeram mais empréstimos que o membro Smith.
 
-SELECT e.num_membro, m.nome
-FROM emprestado e JOIN membro m ON m.num_membro = e.num_membro
+SELECT m.nome
+FROM emprestado e INNER JOIN membro m ON m.num_membro = e.num_membro
 GROUP by e.num_membro, m.nome
 HAVING COUNT (e.num_membro) > (SELECT COUNT(e.num_membro)
                               FROM emprestado e INNER JOIN membro m ON m.num_membro = e.num_membro
@@ -35,9 +35,9 @@ HAVING COUNT (e.num_membro) > (SELECT COUNT(e.num_membro)
 
 --Consulta e) Ache os membros que não fizeram empréstimos de livros do autor Abraham.
 
-SELECT e.num_membro, m.nome
-FROM emprestado e JOIN membro m ON e.num_membro = m.num_membro
-GROUP by e.num_membro, m.num_membro
+SELECT m.nome
+FROM emprestado e INNER JOIN membro m ON e.num_membro = m.num_membro
+GROUP by e.num_membro, m.nome
 HAVING e.num_membro not in (SELECT num_membro
-                          FROM emprestado e JOIN livro l ON e.isbn = l.isbn
+                          FROM emprestado e INNER JOIN livro l ON e.isbn = l.isbn
                           WHERE l.autores = 'Abraham');
