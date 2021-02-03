@@ -1,14 +1,14 @@
 CREATE TABLE membro(
-    num_membro INT PRIMARY KEY,
-    nome VARCHAR(40) NOT NULL,
+    num_membro INT CHECK(idade > 0) PRIMARY KEY,
+    nome VARCHAR(25) NOT NULL,
     idade INT CHECK(idade > 0) NOT NULL
 );
 
 CREATE TABLE livro(
     isbn BIGINT PRIMARY KEY,
-    titulo TEXT NOT NULL,
-    autores VARCHAR(40) NOT NULL,
-    editora VARCHAR(25) NOT NULL
+    titulo VARCHAR(45) NOT NULL,
+    autores VARCHAR(25) NOT NULL,
+    editora VARCHAR(15) NOT NULL
 );
 
 CREATE TABLE emprestado(
