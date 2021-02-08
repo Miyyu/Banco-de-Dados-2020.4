@@ -5,7 +5,7 @@ FROM emprestado e INNER JOIN livro l ON e.isbn = l.isbn
 WHERE l.autores in (SELECT l.autores
        		        FROM emprestado e INNER JOIN livro l ON e.isbn = l.isbn
                   	GROUP by l.autores
-			HAVING COUNT(l.autores) >= 5)
+			HAVING COUNT(l.autores) > 5)
 GROUP BY l.autores, l.editora;
 
 --Consulta b) Ache a média de empréstimos por data.
